@@ -184,6 +184,13 @@ RUN \
   && git clone --depth 1 --branch ${ZSTD_VERSION} https://github.com/tokers/zstd-nginx-module.git /usr/src/zstd
 
 RUN \
+  echo "Patching compression module to support 207(MULTI STATUS)" \
+  && sed -i "/#define NGX_HTTP_PARTIAL_CONTENT           206/a  #define NGX_HTTP_MULTI_STATUS           207" /usr/src/nginx-$NGINX_VERSION/src/http/ngx_http_request.h \
+  && sed -i "/|| (r->headers_out.status != NGX_HTTP_OK/a  && r->headers_out.status != NGX_HTTP_MULTI_STATUS" /usr/src/nginx-$NGINX_VERSION/src/http/modules/ngx_http_gzip_filter_module.c \
+  && sed -i "/|| (r->headers_out.status != NGX_HTTP_OK/a  && r->headers_out.status != NGX_HTTP_MULTI_STATUS" /usr/src/ngx_brotli/filter/ngx_http_brotli_filter_module.c \
+  && sed -i "/|| (r->headers_out.status != NGX_HTTP_OK/a  && r->headers_out.status != NGX_HTTP_MULTI_STATUS" /usr/src/zstd/filter/ngx_http_zstd_filter_module.c
+
+RUN \
   echo "Cloning and configuring quickjs ..." \
   && cd /usr/src \
   && git clone https://github.com/bellard/quickjs quickjs \
