@@ -1,7 +1,9 @@
 ## What is this?
 [![Docker Image CI](https://github.com/macbre/docker-nginx-http3/actions/workflows/dockerimage.yml/badge.svg)](https://github.com/macbre/docker-nginx-http3/actions/workflows/dockerimage.yml)
 
-Stable and up-to-date [nginx](https://nginx.org/en/CHANGES) with [QUIC + HTTP/3 support](https://nginx.org/en/docs/http/ngx_http_v3_module.html), [Google's `brotli` compression](https://github.com/google/ngx_brotli), [`zstd` compression](https://github.com/tokers/zstd-nginx-module), [`njs` module](https://nginx.org/en/docs/njs/), [kTLS/sendfile support](https://delthas.fr/blog/2023/kernel-tls/) and [Grade A+ SSL config](https://ssl-config.mozilla.org/)
+Stable and up-to-date [nginx](https://nginx.org/en/CHANGES) with [QUIC + HTTP/3 support](https://nginx.org/en/docs/http/ngx_http_v3_module.html), [Google's `brotli` compression](https://github.com/google/ngx_brotli), [`zstd` compression](https://github.com/tokers/zstd-nginx-module), [`njs` module](https://nginx.org/en/docs/njs/), [kTLS/sendfile support](https://delthas.fr/blog/2023/kernel-tls/) and [Grade A+ SSL config](https://ssl-config.mozilla.org/).
+
+Images for [`linux/amd64`, `linux/arm64` and `linux/arm/v7` architectures](https://github.com/macbre/docker-nginx-http3/pkgs/container/nginx-http3) are provided.
 
 ## How to use this image
 As this project is based on the official [nginx image](https://hub.docker.com/_/nginx/) look for instructions there. In addition to the standard configuration directives, you'll be able to use the brotli module specific ones, see [here for official documentation](https://github.com/google/ngx_brotli#configuration-directives)
@@ -27,12 +29,12 @@ docker pull ghcr.io/macbre/nginx-http3:latest
 
 ```
 $ docker run -it macbre/nginx-http3 nginx -V
-nginx version: nginx/1.29.4 (c704574)
+nginx version: nginx/1.29.8 (5eaf45f)
 built by gcc 13.2.1 20240309 (Alpine 13.2.1_git20240309) 
-built with OpenSSL 3.3.5 30 Sep 2025
+built with OpenSSL 3.3.7 7 Apr 2026
 TLS SNI support enabled
 configure arguments: 
-	--build=c704574 
+	--build=5eaf45f 
 	--prefix=/etc/nginx 
 	--sbin-path=/usr/sbin/nginx 
 	--modules-path=/usr/lib/nginx/modules 
@@ -89,7 +91,7 @@ configure arguments:
 
 
 $ docker run -it macbre/nginx-http3 njs -v
-0.9.3
+0.9.8
 ```
 
 ## SSL Grade A+ handling
