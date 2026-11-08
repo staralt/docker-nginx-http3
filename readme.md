@@ -3,7 +3,7 @@
 
 Stable and up-to-date [nginx](https://nginx.org/en/CHANGES) with [QUIC + HTTP/3 support](https://nginx.org/en/docs/http/ngx_http_v3_module.html), [Google's `brotli` compression](https://github.com/google/ngx_brotli), [`zstd` compression](https://github.com/tokers/zstd-nginx-module), [`njs` module](https://nginx.org/en/docs/njs/), [kTLS/sendfile support](https://delthas.fr/blog/2023/kernel-tls/) and [Grade A+ SSL config](https://ssl-config.mozilla.org/).
 
-Images for [`linux/amd64`, `linux/arm64` and `linux/arm/v7` architectures](https://github.com/macbre/docker-nginx-http3/pkgs/container/nginx-http3) are provided.
+Images for [`linux/amd64` and `linux/arm64` architectures](https://github.com/macbre/docker-nginx-http3/pkgs/container/nginx-http3) are provided.
 
 ## How to use this image
 As this project is based on the official [nginx image](https://hub.docker.com/_/nginx/) look for instructions there. In addition to the standard configuration directives, you'll be able to use the brotli module specific ones, see [here for official documentation](https://github.com/google/ngx_brotli#configuration-directives)
@@ -29,12 +29,12 @@ docker pull ghcr.io/macbre/nginx-http3:latest
 
 ```
 $ docker run -it macbre/nginx-http3 nginx -V
-nginx version: nginx/1.31.3 (073ab5d)
+nginx version: nginx/1.31.8 (140aa94)
 built by gcc 15.2.0 (Alpine 15.2.0) 
-built with OpenSSL 3.5.7 9 Jun 2026
+built with OpenSSL 3.5.9 29 Sep 2026 (running with OpenSSL 3.5.8 25 Aug 2026)
 TLS SNI support enabled
 configure arguments: 
-	--build=073ab5d 
+	--build=140aa94
 	--prefix=/etc/nginx 
 	--sbin-path=/usr/sbin/nginx 
 	--modules-path=/usr/lib/nginx/modules 
@@ -91,7 +91,7 @@ configure arguments:
 
 
 $ docker run -it macbre/nginx-http3 njs -v
-0.9.9
+1.0.2
 ```
 
 ## SSL Grade A+ handling

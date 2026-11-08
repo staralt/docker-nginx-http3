@@ -1,14 +1,14 @@
 # https://github.com/nginx/nginx/blob/master/src/core/nginx.h
-ARG NGINX_VERSION=1.31.3
+ARG NGINX_VERSION=1.31.8
 
 # https://github.com/nginx/nginx/releases
-ARG NGINX_COMMIT=073ab5d
+ARG NGINX_COMMIT=140aa94
 
 # https://github.com/google/ngx_brotli
 ARG NGX_BROTLI_COMMIT=a71f9312c2deb28875acc7bacfdd5695a111aa53
 
-# https://github.com/nginx/njs/releases/tag/0.9.9
-ARG NJS_COMMIT=9ead4e71f74a27279f3212bdb6cadb0e86981a1b
+# https://github.com/nginx/njs/releases/tag/1.0.2
+ARG NJS_COMMIT=72e6a980b9bf2a28ae2d568bbc3b6830a5d7c39e
 
 # https://github.com/openresty/headers-more-nginx-module#installation
 # we want to have https://github.com/openresty/headers-more-nginx-module/commit/e536bc595d8b490dbc9cf5999ec48fca3f488632
@@ -82,7 +82,7 @@ ARG CONFIG="\
 	"
 
 # https://hub.docker.com/_/alpine
-FROM alpine:3.23 AS base
+FROM alpine:3.24 AS base
 
 ARG NGINX_VERSION
 ARG NGINX_COMMIT
@@ -226,7 +226,7 @@ RUN \
 			| xargs -r apk info --installed \
 			| sort -u > /tmp/runDeps.txt
 
-FROM alpine:3.23
+FROM alpine:3.24
 ARG NGINX_VERSION
 ARG NGINX_COMMIT
 ARG NGINX_USER_UID
@@ -281,5 +281,5 @@ RUN \
   chown -R --verbose nginx:nginx \
     /var/run/nginx/
 
-USER nginx
+USER $NGINX_USER_UID
 CMD ["nginx", "-g", "daemon off;"]
